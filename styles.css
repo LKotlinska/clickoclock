@@ -1,4 +1,10 @@
 /*GLOBAL STYLES*/
+@property --a {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 10deg;
+  }
+
 body {
     margin: 0;
     background-color: #DDDDDD;
@@ -92,15 +98,18 @@ h1, .game_title {
     box-sizing: border-box;
     margin: 2em;
     aspect-ratio: 1.5/1;
-    background-color: rgb(255, 171, 87);
-}
 
+    animation: color 2s alternate infinite;
+}
 
 #game_canvas {
     display: grid;
     grid-template-rows: auto 1fr;
     height: 100%;
 }
+
+/*GRADIENT BACKGROUND FOR GAME WINDOW*/
+
 
 /*MENU AND BUTTON STYLES*/
 .menu_container, 
@@ -121,27 +130,27 @@ h1, .game_title {
     margin: 15px auto;   
     width: 220px;
     height: 60px; 
+    outline: #0f253b 2px solid;
+    outline-offset: 2px;
 }
 
 .menu_button:hover {
     background-color: #30475E;
+    transform: scale(1.06);
 }
 
 /*GAMEPLAY STYLES*/
-.game_exit,
 #game_score{
+    width: 150px;
     height: 55px;
     display: flex;
 }
 
-.game_exit,
-.game_pause{
-    width: 55px;
-    border-radius: 50%;
-}
-
 .game_exit{
-    background-color: red;
+    margin-left: 15px;
+    width: 85px;
+    font-size: 1em;
+    text-align: center;
 }
 
 #game_score{
@@ -150,6 +159,7 @@ h1, .game_title {
     justify-content: center;
     align-items: center;
     font-size: 2em;
+    height: 100%;
 }
 
 .game_hud,
@@ -166,10 +176,6 @@ h1, .game_title {
     display: flex;
     justify-content: space-between;
 }
-.game_hud div{
-    display: flex;
-    gap: 15px;
-}
 
 #gameplay_window{
     margin: 15px;
@@ -182,7 +188,7 @@ h1, .game_title {
     width: 75px;
     height: 75px;
     border-radius: 50%;
-    background-color: black;
+    background-color: rgb(255, 0, 0);
     display: none;
 }
 
@@ -196,11 +202,13 @@ h1, .game_title {
 }
 .exit_popup_window{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #da32be;
+    background-color: #ffab57;
     padding: 25px;
+    border: 1px solid black;
 }
 
 .exit_window_text{
@@ -213,7 +221,7 @@ h1, .game_title {
     font-size: 1em;
     display: flex;
     justify-content: center; 
-    width: 180px;
+    width: 150px;
     height: 50px;
     margin: 10px;
     align-items: center;
@@ -223,6 +231,7 @@ h1, .game_title {
     text-align: center;
     font-size: 2em;
     top: 40%;
+    user-select: none;
 }
 
 /*INFORMATION PANEL*/
@@ -242,44 +251,55 @@ h1, .game_title {
     text-align: center;
 }
 
-@media screen and (max-width: 710px) { 
-    .game_title{
-        font-size: 4em;
+/*ANIMATIONS*/
+
+/*MENU BAKGROUND*/
+@keyframes color {
+    0% { 
+        background: #e6844b;
+        background-position: 0% 45%;
+    }
+    30% {
+        background: #ff9151; 
+    }
+    55% { 
+        background: #f38d3a; 
+        background-position: 100% 50%;
+    }
+    75%{
+        background: #e98a4a; 
+        background-position: 0% 75%;
+    }
+    100% { 
+        background: #e09044; 
+        
+    }
+  }
+
+/* RESPONSIVITY ADJUSTMENTS*/
+@media screen and (max-width: 800px) { 
+    .game_title {
+        font-size: 3em;
         margin-bottom: 0;
     }
-    .menu_button{
-        width: 190px;
+    .menu_button {
+        width: 160px;
+        height: 45px;
+        font-size: 1.3em;
     }
-}
-
-@media screen and (max-width: 600px) { 
-    .game_title{
-        font-size: 3.5em;
+    .game_exit {
+        width: 65px;
+        height: 45px;
+        font-size: 1em;
     }
-    .menu_button{
-        width: 180px;
-        margin: 5px;
+    #game_score{
+        font-size: 1.3em;
     }
     #clickable_object{
         width: 50px;
         height: 50px;
     }
-    .game_title{
-        font-size: 3em;
+    #press_to_play{
+        font-size: 1.3em;
     }
-    .menu_button{
-        width: 180px;
-        margin: 5px;
-        height: 45px;
-        font-size: 1.5em;
-    }
-    .exit_popup_window{
-        font-size: 1.1em;
-    }
-    .exit_window_button{
-        width: 150px;
-        height: 40px;
-        margin: 5px;
-    }
-
 }

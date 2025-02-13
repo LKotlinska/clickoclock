@@ -2,9 +2,9 @@ const mainMenu = /*html*/ `
     <div class="menu_container">
         <div class="menu_content">
             <div class="game_title">Click O'clock</div>
-            <button class="button menu_button" onclick="updateContent(gameplay)">start</button>
-            <button class="button menu_button" onclick="updateContent(guide)">guide</button>
-            <button class="button menu_button" onclick="updateContent(about)">about</button>
+            <button class="menu_button" onclick="updateContent(gameplay)">start</button>
+            <button class="menu_button" onclick="updateContent(guide)">guide</button>
+            <button class="menu_button" onclick="updateContent(about)">about</button>
         </div>
     </div>
 `;
@@ -21,7 +21,7 @@ const gameplay = /*html*/ `
     </div>
     <div class="game_hud">
         <div>
-            <button class="game_exit" onclick="pauseOrExitGame(gameExit)"></button>
+            <button class="game_exit menu_button" onclick="pauseOrExitGame()">exit</button>
         </div>
         <div>
             <div id="game_score"></div>
@@ -41,25 +41,25 @@ const gameExit = /*html*/ `
         <div class="exit_window_text">
             Are you sure you want to leave the game?
         </div>
-        <button class="button exit_window_button" onclick="resumeGameplay()">
+        <button class="menu_button exit_window_button" onclick="resumeGameplay()">
             Continue
         </button>
-        <button class="button exit_window_button" onclick="updateContent(mainMenu)">
+        <button class="menu_button exit_window_button" onclick="updateContent(mainMenu)">
             Exit
         </button>
     </div>
 `;
 
 let intervalID;
-
+const clickableObject = document.getElementById('clickable_object')
 //This function pushes variable content into the game window.
 function updateContent(param) {
     var divElement = document.getElementById('game_canvas');
     divElement.innerHTML = param;
-    if(param === gameplay){
+    if (param === gameplay) {
         initiateGameLogic();
     }
-    if(param === mainMenu){
+    if (param === mainMenu) {
         FlexOn();
     }
 }
@@ -81,11 +81,11 @@ function moveObject() {
 }
 
 //Pop-up for the exit to menu window that pauses the game.
-function pauseOrExitGame(param) {
+function pauseOrExitGame() {
     var divElement = document.getElementById('game_exit_window');
     //Moved the pop-up window on top of the gameplay window.
     divElement.style.zIndex = '100';
-    divElement.innerHTML = param;
+    divElement.innerHTML = gameExit;
     clearInterval(intervalID);
 }
 
@@ -96,7 +96,7 @@ function resumeGameplay() {
     divElement.style.zIndex = '0';
     //"Closes" the pop-up window.
     divElement.innerHTML = '';
-    intervalID = setInterval(moveObject, 700); 
+    intervalID = setInterval(moveObject, 700);
 }
 
 //Contains the gameplay functionality and mechanics.
@@ -106,13 +106,8 @@ function initiateGameLogic() {
 
     GridOn();
 
-    document.getElementById('gameplay_window').addEventListener('click', () => {
-        document.getElementById('press_to_play').style.display = 'none';
-        clickableObject.style.display = 'block';
-        clearInterval(intervalID);
-        intervalID = setInterval(moveObject, 700);
-    });
-     
+
+
     if (!clickableObject) return;
 
     //Declaring variables for the score element.
@@ -122,7 +117,9 @@ function initiateGameLogic() {
     //Displays the score from the very beginning of the game.
     scoreElement.innerText = scoreCounter;
 
-    clickableObject.addEventListener('click', () => {
+    clickableObject.addEventListener('mousedown', (event) => {
+        //Disables clicking on the parent.
+        event.stopPropagation();
         //Adds up the points when the object is clicked and updates the score.
         scoreCounter += 100;
         scoreElement.innerText = scoreCounter;
@@ -130,14 +127,37 @@ function initiateGameLogic() {
         clearInterval(intervalID);
         moveObject();
         intervalID = setInterval(moveObject, 700);
+
     })
+
+    //Accesses the exit menu with an assigned keyboard shortcut.
+    document.addEventListener('keyup', (event) => {
+        if (event.key === 'Escape') {
+            pauseOrExitGame();
+        }
+    });
+
+    document.getElementById('gameplay_window').addEventListener('mousedown', () => {
+        let pressToPlay = document.getElementById('press_to_play');
+        if(pressToPlay.style.display !== 'none'){
+           pressToPlay.style.display = 'none';
+            clickableObject.style.display = 'block';
+            clearInterval(intervalID);
+            intervalID = setInterval(moveObject, 700);
+        }
+        else
+        {
+            scoreCounter -= 100;
+            scoreElement.innerText = scoreCounter;
+        }
+    });
 }
 
-function FlexOn(){
+function FlexOn() {
     document.getElementById('game_canvas').style.display = "flex";
 }
 
-function GridOn(){
+function GridOn() {
     document.getElementById('game_canvas').style.display = "grid";
 }
 
