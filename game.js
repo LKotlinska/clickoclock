@@ -50,6 +50,10 @@ const gameExit = /*html*/ `
     </div>
 `;
 
+
+let scoreElement;
+let scoreCounter = 0;
+
 let intervalID;
 const clickableObject = document.getElementById('clickable_object')
 //This function pushes variable content into the game window.
@@ -77,7 +81,25 @@ function moveObject() {
     let randomY = Math.random() * (parentHeight - clickableObject.offsetHeight);
 
     //Repositions clickable object.
-    clickableObject.style.transform = 'translate(' + randomX + 'px, ' + randomY + 'px)';
+    clickableObject.style.left = randomX + 'px';
+    clickableObject.style.top = randomY + 'px';
+
+    let root = document.querySelector(':root');
+    if(scoreCounter >= 5000){
+        root.style.setProperty('--clickableObject-size', '40px')
+        clickableObject.style.background = '#e6844b';
+    }
+    else if(scoreCounter >= 3000){
+        root.style.setProperty('--clickableObject-size', '50px')
+        clickableObject.style.background = 'red';
+    }
+    else if(scoreCounter >= 2000){
+        root.style.setProperty('--clickableObject-size', '65px')
+        clickableObject.style.background = 'yellow';
+    }else{
+        clickableObject.style.background = '#469bf6';
+        root.style.setProperty('--clickableObject-size', '75px')
+    }
 }
 
 //Pop-up for the exit to menu window that pauses the game.
@@ -103,16 +125,13 @@ function resumeGameplay() {
 function initiateGameLogic() {
 
     const clickableObject = document.getElementById('clickable_object')
-
+    //Enable grid display for the game HUD.
     GridOn();
 
-
-
+    //Guard clause - only runs when there's the object present.
     if (!clickableObject) return;
 
-    //Declaring variables for the score element.
-    let scoreElement = document.getElementById('game_score');
-    let scoreCounter = 0;
+    scoreElement = document.getElementById('game_score');
 
     //Displays the score from the very beginning of the game.
     scoreElement.innerText = scoreCounter;
@@ -120,14 +139,16 @@ function initiateGameLogic() {
     clickableObject.addEventListener('mousedown', (event) => {
         //Disables clicking on the parent.
         event.stopPropagation();
+
         //Adds up the points when the object is clicked and updates the score.
         scoreCounter += 100;
         scoreElement.innerText = scoreCounter;
+
         //Clears the object when its clicked and generates a new one.
         clearInterval(intervalID);
         moveObject();
+        
         intervalID = setInterval(moveObject, 700);
-
     })
 
     //Accesses the exit menu with an assigned keyboard shortcut.
@@ -139,18 +160,17 @@ function initiateGameLogic() {
 
     document.getElementById('gameplay_window').addEventListener('mousedown', () => {
         let pressToPlay = document.getElementById('press_to_play');
-        if(pressToPlay.style.display !== 'none'){
-           pressToPlay.style.display = 'none';
+        if (pressToPlay.style.display !== 'none') {
+            pressToPlay.style.display = 'none';
             clickableObject.style.display = 'block';
-            clearInterval(intervalID);
             intervalID = setInterval(moveObject, 700);
         }
-        else
-        {
+        else {
             scoreCounter -= 100;
             scoreElement.innerText = scoreCounter;
         }
     });
+
 }
 
 function FlexOn() {
