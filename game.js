@@ -3,17 +3,94 @@ const mainMenu = /*html*/ `
         <div class="menu_content">
             <div class="game_title">Click O'clock</div>
             <button class="menu_button" onclick="updateContent(gameplay)">start</button>
-            <button class="menu_button" onclick="updateContent(guide)">guide</button>
-            <button class="menu_button" onclick="updateContent(about)">about</button>
+            <button class="menu_button" onclick="updateContent(rules), GridOn()">rules</button>
+            <button class="menu_button" onclick="updateContent(about), GridOn()">about</button>
         </div>
     </div>
 `;
-const guide = /*html*/ `
-    <h1>Hello</h1>
+const rules = /*html*/ `
+        <div class="game_info_title">
+            <div>
+                <button class="menu_button game_exit" onclick="updateContent(mainMenu), flexOn()">
+                   back
+                </button>
+            </div>
+            <div>
+                <h2>
+                How to play Click O'clock
+                </h2>
+            </div>
+        </div>
+        <div class="game_info_text">
+            <div>
+                <h2>
+                Game rules
+                </h2>
+                <p>
+                    Click on the objects as they appear on the screen to earn points. Each object stays visible for 
+                    a short duration—if you don’t click it in time, it will disappear and respawn in a new location. 
+                    The faster you click, the higher your score! Keep playing to improve your reaction time and set a new high score.
+                </p>
+            </div>
+            <div>
+                <h2>Objective</h2>
+                <p>
+                    <ul>
+                        <li>Collect as many points as possible by clicking the object.</li>
+                        <li>Failing to click the object will result in a point deduction.</li>
+                        <li>Practice to improve your reaction time and accuracy.</li>
+                    </ul>
+                    <p>
+                        As you progress, the game becomes more challenging — the more points you earn, the smaller the objects become, 
+                        making it harder to hit them. Stay sharp, click fast, and see how high you can score!
+                    </p>
+                    <p>
+                        Don't forget to have fun!
+                    </p>
+                </p>
+            </div>
+        </div>
 `;
 
 const about = /*html*/ `
-    <h1>Hello</h1>
+    <div class="game_info_title">
+        <div>
+            <button class="menu_button game_exit" onclick="updateContent(mainMenu), flexOn()">
+            back
+            </button>
+        </div>
+        <div>
+            <h2>
+                Click O'clock-project
+            </h2>
+        </div>
+    </div>
+    <div class="game_info_text">
+        <div>
+            <h2>About the developer</h2>
+            <p>
+                Hello! I’m Laura, a web development enthusiast with life-long interest in gaming. 
+                This is my first game (and hopefully not the last), and I must say that creating 
+                Click O'clock has been an incredibly rewarding experience. There were definitely challenges 
+                along the way, but seeing it all come together feels like a victory!
+            </p>
+            <p>
+                I'm looking forward to improving the game based on your feedback!
+            </p>
+            <p>
+                <a href="#feedback">Here's how you can leave feedback!</a>
+            </p>
+        </div>
+        <div>
+            <h2>About the project</h2>
+            <p>
+                This game is created as part of a school project. The idea came to me when learning 
+                about CSS animations, and I decided to build the game using only HTML, CSS, 
+                and JavaScript—no canvas involved! This project has been the perfect opportunity to apply my skills on a larger scale, 
+                as it’s my biggest project so far. 
+            </p>
+        </div>
+    </div>
 `;
 
 const gameplay = /*html*/ `
@@ -21,7 +98,9 @@ const gameplay = /*html*/ `
     </div>
     <div class="game_hud">
         <div>
-            <button class="game_exit menu_button" onclick="pauseOrExitGame()">exit</button>
+            <button class="game_exit menu_button" onclick="pauseOrExitGame()">
+                pause
+            </button>
         </div>
         <div>
             <div id="game_score"></div>
@@ -39,17 +118,16 @@ const gameplay = /*html*/ `
 const gameExit = /*html*/ `
     <div class="exit_popup_window">
         <div class="exit_window_text">
-            Are you sure you want to leave the game?
+            Paused
         </div>
         <button class="menu_button exit_window_button" onclick="resumeGameplay()">
-            Continue
+            Resume
         </button>
         <button class="menu_button exit_window_button" onclick="updateContent(mainMenu)">
-            Exit
+            Exit game
         </button>
     </div>
 `;
-
 
 let scoreElement;
 let scoreCounter = 0;
@@ -61,6 +139,7 @@ function updateContent(param) {
     var divElement = document.getElementById('game_canvas');
     divElement.innerHTML = param;
     if (param === gameplay) {
+        scoreCounter = 0;
         initiateGameLogic();
     }
     if (param === mainMenu) {
@@ -85,18 +164,18 @@ function moveObject() {
     clickableObject.style.top = randomY + 'px';
 
     let root = document.querySelector(':root');
-    if(scoreCounter >= 5000){
+    if (scoreCounter >= 5000) {
         root.style.setProperty('--clickableObject-size', '40px')
         clickableObject.style.background = '#e6844b';
     }
-    else if(scoreCounter >= 3000){
+    else if (scoreCounter >= 3000) {
         root.style.setProperty('--clickableObject-size', '50px')
         clickableObject.style.background = 'red';
     }
-    else if(scoreCounter >= 2000){
+    else if (scoreCounter >= 2000) {
         root.style.setProperty('--clickableObject-size', '65px')
         clickableObject.style.background = 'yellow';
-    }else{
+    } else {
         clickableObject.style.background = '#469bf6';
         root.style.setProperty('--clickableObject-size', '75px')
     }
@@ -104,11 +183,12 @@ function moveObject() {
 
 //Pop-up for the exit to menu window that pauses the game.
 function pauseOrExitGame() {
+    clearInterval(intervalID);
     var divElement = document.getElementById('game_exit_window');
     //Moved the pop-up window on top of the gameplay window.
     divElement.style.zIndex = '100';
     divElement.innerHTML = gameExit;
-    clearInterval(intervalID);
+
 }
 
 //Resumes the game after clicking continue-button.
@@ -118,7 +198,12 @@ function resumeGameplay() {
     divElement.style.zIndex = '0';
     //"Closes" the pop-up window.
     divElement.innerHTML = '';
-    intervalID = setInterval(moveObject, 700);
+    setNewInterval();
+}
+
+function setNewInterval(){
+    clearInterval(intervalID);
+    intervalID = setInterval(moveObject, 700)
 }
 
 //Contains the gameplay functionality and mechanics.
@@ -145,10 +230,9 @@ function initiateGameLogic() {
         scoreElement.innerText = scoreCounter;
 
         //Clears the object when its clicked and generates a new one.
-        clearInterval(intervalID);
         moveObject();
-        
-        intervalID = setInterval(moveObject, 700);
+
+        setNewInterval();
     })
 
     //Accesses the exit menu with an assigned keyboard shortcut.
@@ -163,7 +247,7 @@ function initiateGameLogic() {
         if (pressToPlay.style.display !== 'none') {
             pressToPlay.style.display = 'none';
             clickableObject.style.display = 'block';
-            intervalID = setInterval(moveObject, 700);
+            setNewInterval();
         }
         else {
             scoreCounter -= 100;
