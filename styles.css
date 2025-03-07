@@ -9,7 +9,7 @@ body {
     margin: 0;
     background-color: #DDDDDD;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.5em;
+    font-size: 1.1em;
 }
 
 a:link, 
@@ -285,6 +285,7 @@ h2,
 .info_panel,
 .disclaimer{
     max-width: 1280px;
+    padding: 0.8em;
 }
 
 .info_panel p{
@@ -362,5 +363,35 @@ h2,
     }
     #press_to_play{
         font-size: 1.3em;
+    }
+}
+@media screen and (max-width: 630px) { 
+    .menu_button {
+        width: 120px;
+        height: 35px;
+        font-size: 1em;
+        margin: 10px;
+    }
+    .game_exit{
+        width: 50px;
+    }
+    body{
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 450px) { 
+    .game_title {
+        font-size: 2em;
+    }
+    .menu_button {
+        width: 90px;
+        height: 25px;
+        font-size: 0.8em;
+        margin: 5px;
+        outline: #0f253b 1px solid;
+    }
+    .game_exit{
+        width: 50px;
     }
 }
