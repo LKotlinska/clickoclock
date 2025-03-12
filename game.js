@@ -27,26 +27,12 @@ const rules = /*html*/ `
                 Game rules
                 </h2>
                 <p>
-                    Click on the objects as they appear on the screen to earn points. Each object stays visible for 
-                    a short duration—if you don’t click it in time, it will disappear and respawn in a new location. 
+                    Click on the circles as they appear on the screen to earn points. Failing to click will result in a point deduction.
                     The faster you click, the higher your score! Keep playing to improve your reaction time and set a new high score.
                 </p>
-            </div>
-            <div>
-                <h2>Objective</h2>
-                <p>
-                    <ul>
-                        <li>Collect as many points as possible by clicking the object.</li>
-                        <li>Failing to click the object will result in a point deduction.</li>
-                        <li>Practice to improve your reaction time and accuracy.</li>
-                    </ul>
-                    <p>
-                        As you progress, the game becomes more challenging — the more points you earn, the smaller the objects become, 
-                        making it harder to hit them. Stay sharp, click fast, and see how high you can score!
-                    </p>
-                    <p>
-                        Don't forget to have fun!
-                    </p>
+                 <p>
+                    As you progress, the game becomes more challenging — the more points you earn, the smaller the objects become, 
+                    making it harder to hit them. Stay sharp, click fast, and see how high you can score!
                 </p>
             </div>
         </div>
@@ -67,27 +53,20 @@ const about = /*html*/ `
     </div>
     <div class="game_info_text">
         <div>
-            <h2>About the developer</h2>
+            <h2>About the project</h2>
             <p>
-                Hello! I’m Laura, a web development enthusiast with life-long interest in gaming. 
-                This is my first game (and hopefully not the last), and I must say that creating 
-                Click O'clock has been an incredibly rewarding experience. There were definitely challenges 
-                along the way, but seeing it all come together feels like a victory!
+                Click O’Clock is my first game (but hopefully not my last), and creating it has been an incredibly 
+                rewarding experience. There were challenges along the way, but seeing it come together feels like a victory!
             </p>
             <p>
-                I'm looking forward to improving the game based on your feedback!
+                This game was developed as part of a school project. The idea came to me while learning about CSS 
+                animations, and I built it using only HTML, CSS, and JavaScript—no canvas involved!
+            </p>
+            <p>
+                I look forward to improving the game based on your feedback!
             </p>
             <p>
                 <a href="#feedback">Here's how you can leave feedback!</a>
-            </p>
-        </div>
-        <div>
-            <h2>About the project</h2>
-            <p>
-                This game is created as part of a school project. The idea came to me when learning 
-                about CSS animations, and I decided to build the game using only HTML, CSS, 
-                and JavaScript—no canvas involved! This project has been the perfect opportunity to apply my skills on a larger scale, 
-                as it’s my biggest project so far. 
             </p>
         </div>
     </div>
@@ -263,6 +242,7 @@ function FlexOn() {
 
 function GridOn() {
     document.getElementById('game_canvas').style.display = "grid";
+    console.log()
 }
 
 //When the page is loaded, it displays the main menu.
