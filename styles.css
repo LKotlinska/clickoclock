@@ -109,9 +109,6 @@ h2,
     height: 100%;
 }
 
-/*GRADIENT BACKGROUND FOR GAME WINDOW*/
-
-
 /*MENU AND BUTTON STYLES*/
 .menu_container, 
 .menu_content {
@@ -282,8 +279,7 @@ h2,
     margin-bottom: 1.1em;
 }
 
-.info_panel,
-.disclaimer{
+.info_panel{
     max-width: 1280px;
     padding: 0.8em;
 }
