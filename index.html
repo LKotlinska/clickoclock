@@ -1,86 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="game.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--LINKS TO CUSTOM GOOGLE FONT-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap" rel="stylesheet">
-    <title>
-        Click O'clock
-    </title>
-</head>
-
-<body>
-    <div class="flex_container">
-        <header>
-            <nav class="nav_bar">
-                <ul>
-                    <li><a href="#about_the_game">About the game</a></li>
-                    <li><a href="#feedback">Feedback</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-        <!-----------GAME CONTAINERS!---------->
-        <div class="game_wrapper">
-            <div id="game_canvas">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="game.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--LINKS TO CUSTOM GOOGLE FONT-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap" rel="stylesheet">
+        <title>
+            Click O'clock
+        </title>
+    </head>
+    <body>
+        <div class="flex_container">
+            <header>
+                <nav class="nav_bar">
+                    <ul>
+                        <li><a href="#about_the_game">About the game</a></li>
+                        <li><a href="#feedback">Feedback</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <!-----------GAME CONTAINERS!---------->
+            <div class="game_wrapper">
+                <div id="game_canvas">
+                </div>
             </div>
+            <!-----------GAME CONTAINERS END---------->
+            <div class="info_panel">
+                <div>
+                    <h2 id="about_the_game">
+                        About the game
+                    </h2>
+                    <p>
+                        Welcome to Click O'clock – a browser game and the ultimate test of your speed and precision! Your
+                        mission is simple:
+                        click on the objects before they disappear. Every successful click scores you points,
+                        but make sure you're accurate!
+                    </p>
+                    <p>
+                        No complicated rules, just a fun little challenge to see how fast you really are. Play for
+                        a high score, beat your own record, or just pass the time. Ready to give it a go? Click away and see
+                        how far you can get!
+                    </p>
+                </div>
+                <div>
+                    <h2 id="feedback">Your feedback</h2>
+                    <p>
+                        Thanks for playing Click O'Clock! I’d love to know what you think. Your feedback will help me
+                        improve
+                        the game and make it even more fun. If you have a moment, please answer a few questions!</p>
+                    <p>
+                        <a target="_blank"
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSfaVTwwlGhVoPNhu49WWecx4psg8qYZExHAXDHeUwAjcuiaPQ/viewform?usp=sharing">
+                            Click here to access the feedback form!
+                        </a>
+                    </p>
+                </div>
+                <div>
+                    <h2 id="contact">Contact</h2>
+                    <p>
+                        Have feedback or suggestions? Feel free to reach out to the developer—I’d love to hear from you!
+                    </p>
+                    <p>
+                        <a target="_blank"
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSc0x_pw9koWr4zW1z-c3ReyMOm4Jy6fjXVwUzzShvBLSl60aA/viewform?usp=sharing">
+                            Click here to to send a message!
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <footer id="contact" class="footer_wrapper">
+                <div>
+                    <p>© 2025 Laura Greta Kotlinska</p>
+                </div>
+            </footer>
         </div>
-        <!-----------GAME CONTAINERS END---------->
-        <div class="info_panel">
-            <div>
-                <h2 id="about_the_game">
-                    About the game
-                </h2>
-                <p>
-                    Welcome to Click O'clock – a browser game and the ultimate test of your speed and precision! Your
-                    mission is simple:
-                    click on the objects before they disappear. Every successful click scores you points,
-                    but make sure you're accurate!
-                </p>
-                <p>
-                    No complicated rules, just a fun little challenge to see how fast you really are. Play for
-                    a high score, beat your own record, or just pass the time. Ready to give it a go? Click away and see
-                    how far you can get!
-                </p>
-            </div>
-            <div>
-                <h2 id="feedback">Your feedback</h2>
-                <p>
-                    Thanks for playing Click O'Clock! I’d love to know what you think. Your feedback will help me
-                    improve
-                    the game and make it even more fun. If you have a moment, please answer a few questions!</p>
-                <p>
-                    <a target="_blank"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfaVTwwlGhVoPNhu49WWecx4psg8qYZExHAXDHeUwAjcuiaPQ/viewform?usp=sharing">
-                        Click here to access the feedback form!
-                    </a>
-                </p>
-            </div>
-            <div>
-                <h2 id="contact">Contact</h2>
-                <p>
-                    Have feedback or suggestions? Feel free to reach out to the developer—I’d love to hear from you!
-                </p>
-                <p>
-                    <a target="_blank"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSc0x_pw9koWr4zW1z-c3ReyMOm4Jy6fjXVwUzzShvBLSl60aA/viewform?usp=sharing">
-                        Click here to to send a message!
-                    </a>
-                </p>
-            </div>
-        </div>
-        <footer id="contact" class="footer_wrapper">
-            <div>
-                <p>© 2025 Laura Greta Kotlinska</p>
-            </div>
-        </footer>
-    </div>
-</body>
-
+    </body>
 </html>

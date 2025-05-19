@@ -182,7 +182,7 @@ function resumeGameplay() {
 
 function setNewInterval(){
     clearInterval(intervalID);
-    intervalID = setInterval(moveObject, 700)
+    intervalID = setInterval(moveObject, 2000)
 }
 
 //Contains the gameplay functionality and mechanics.
