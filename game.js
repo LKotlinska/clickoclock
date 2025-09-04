@@ -3,8 +3,8 @@ const mainMenu = /*html*/ `
         <div class="menu_content">
             <div class="game_title">Click O'clock</div>
             <button class="menu_button" onclick="updateContent(gameplay)">start</button>
-            <button class="menu_button" onclick="updateContent(rules), GridOn()">rules</button>
-            <button class="menu_button" onclick="updateContent(about), GridOn()">about</button>
+            <button class="menu_button" onclick="updateContent(rules), gridOn()">rules</button>
+            <button class="menu_button" onclick="updateContent(about), gridOn()">about</button>
         </div>
     </div>
 `;
@@ -83,9 +83,9 @@ const gameplay = /*html*/ `
         </div>
         <div>
             <div class="game_lives">
-                <div class="life_1"></div>
-                <div class="life_2"></div>
-                <div class="life_3"></div>
+                <div id="life_1"></div>
+                <div id="life_2"></div>
+                <div id="life_3"></div>
             </div>
         </div>
         <div>
@@ -131,7 +131,7 @@ function updateContent(param) {
         initiateGameLogic();
     }
     if (param === mainMenu) {
-        FlexOn();
+        flexOn();
     }
 }
 
@@ -191,7 +191,7 @@ function resumeGameplay() {
 
 function setNewInterval(){
     clearInterval(intervalID);
-    intervalID = setInterval(moveObject, 2000)
+    intervalID = setInterval(moveObject, 1200)
 }
 
 //Contains the gameplay functionality and mechanics.
@@ -200,7 +200,7 @@ function initiateGameLogic() {
         
     const clickableObject = document.getElementById('clickable_object')
     //Enable grid display for the game HUD.
-    GridOn();
+    gridOn();
 
     //Guard clause - only runs when there's the object present.
     if (!clickableObject) return;
@@ -240,6 +240,8 @@ function initiateGameLogic() {
         }
         else {
             life -= 1;
+            setNewInterval();
+            document.getElementById('life_3').style.display = 'none';
             
         }
         if(life === 0){
@@ -250,11 +252,11 @@ function initiateGameLogic() {
     });
 }
 
-function FlexOn() {
+function flexOn() {
     document.getElementById('game_canvas').style.display = "flex";
 }
 
-function GridOn() {
+function gridOn() {
     document.getElementById('game_canvas').style.display = "grid";
     console.log()
 }
@@ -262,6 +264,6 @@ function GridOn() {
 //When the page is loaded, it displays the main menu.
 addEventListener('DOMContentLoaded', (event) => {
     updateContent(mainMenu);
-    FlexOn();
+    flexOn();
 });
 

@@ -37,6 +37,7 @@ h2,
     color: #0f253b;
     margin: 20px auto;
     font-size: 5em;
+    text-align: center;
 }
 
 /*GAME WRAPPER AND GAME CANVAS*/
@@ -174,9 +175,9 @@ h2,
     align-items: center;
 }
 
-.life_1,
-.life_2,
-.life_3{
+#life_1,
+#life_2,
+#life_3{
     width: 30px;
     height: 30px;
     margin: 10px;
@@ -256,8 +257,7 @@ h2,
 }
 @media screen and (max-width: 800px) { 
     .game_title {
-        font-size: 3em;
-        margin-bottom: 0;
+        margin-bottom: 0 auto;
     }
     .menu_button {
         width: 160px;
@@ -291,10 +291,9 @@ h2,
 }
 @media screen and (max-width: 630px) { 
     .menu_button {
-        width: 120px;
-        height: 35px;
-        font-size: 1em;
-        margin: 10px;
+        width: 220px;
+        height: 55px;
+        font-size: 1.6em;
     }
     .game_exit{
         width: 50px;
@@ -306,6 +305,7 @@ h2,
     .game_info_title h2{
         margin-top: 5px;
         margin-bottom: 5px;
+        text-wrap: wrap;
     }
     .game_info_text p{
         margin-top: 5px;
