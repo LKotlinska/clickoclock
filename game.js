@@ -82,6 +82,13 @@ const gameplay = /*html*/ `
             </button>
         </div>
         <div>
+            <div class="game_lives">
+                <div class="life_1"></div>
+                <div class="life_2"></div>
+                <div class="life_3"></div>
+            </div>
+        </div>
+        <div>
             <div id="game_score"></div>
         </div>
     </div>
@@ -89,9 +96,11 @@ const gameplay = /*html*/ `
         <div id="press_to_play">
             Click to play!
         </div>
+        <div id="game_over">
+            Game over!
+        </div>
         <div id="clickable_object"></div>
-    </div>
-    
+    </div> 
 `;
 
 const gameExit = /*html*/ `
@@ -187,7 +196,8 @@ function setNewInterval(){
 
 //Contains the gameplay functionality and mechanics.
 function initiateGameLogic() {
-
+    let life = 3;
+        
     const clickableObject = document.getElementById('clickable_object')
     //Enable grid display for the game HUD.
     GridOn();
@@ -229,11 +239,15 @@ function initiateGameLogic() {
             setNewInterval();
         }
         else {
-            scoreCounter -= 100;
-            scoreElement.innerText = scoreCounter;
+            life -= 1;
+            
+        }
+        if(life === 0){
+            clearInterval(intervalID);
+            document.getElementById('game_over').style.display = 'block';
+            clickableObject.style.display = 'none';
         }
     });
-
 }
 
 function FlexOn() {
