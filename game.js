@@ -77,8 +77,8 @@ const gameplay = /*html*/ `
     </div>
     <div class="game_hud">
         <div>
-            <button class="game_exit menu_button" onclick="pauseOrExitGame()">
-                pause
+            <button class="menu_button game_exit" onclick="pauseOrExitGame()">
+                &#9208;
             </button>
         </div>
         <div>

@@ -35,7 +35,7 @@ h2,
 
 .game_title {
     color: #0f253b;
-    margin: 20px auto;
+    margin: 20px;
     font-size: 5em;
     text-align: center;
 }
@@ -48,7 +48,7 @@ h2,
     display: flex;
     min-width: 100vw;
     min-height: 100vh;
-    background-color: #e09044;
+    background-color: #ffbd68;
 }
 
 #game_canvas {
@@ -109,21 +109,17 @@ h2,
 
 /*GAMEPLAY STYLES*/
 #game_score{
-    width: 150px;
-    height: 55px;
     display: flex;
 }
 
 .game_exit{
-    margin: 15px;
-    height: 45px;
-    width: 85px;
-    font-size: 1em;
-    text-align: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }
 
 #game_score{
-    width: 150px;
+    display: flex;
     color: black;
     justify-content: center;
     align-items: center;
@@ -138,10 +134,15 @@ h2,
 }
 
 .game_hud{
+    height: 100px;
     grid-row: 1;
     grid-column: 1;
     display: flex;
     justify-content: space-between;
+}
+
+.game_hud div{
+    margin: auto 15px;
 }
 
 #gameplay_window{
@@ -259,25 +260,9 @@ h2,
     .game_title {
         margin-bottom: 0 auto;
     }
-    .menu_button {
-        width: 160px;
-        height: 45px;
-        font-size: 1.3em;
-    }
-    .game_exit {
-        width: 65px;
-        height: 45px;
-        font-size: 1em;
-    }
-    #game_score{
-        font-size: 1.3em;
-    }
     #clickable_object{
         width: calc(var(--clickableObject-size) - 10px);
         height: calc(var(--clickableObject-size) - 10px);
-    }
-    #press_to_play{
-        font-size: 1.3em;
     }
     .game_info_text{
         padding: 15px;
@@ -290,41 +275,16 @@ h2,
     }
 }
 @media screen and (max-width: 630px) { 
-    .menu_button {
-        width: 220px;
-        height: 55px;
-        font-size: 1.6em;
-    }
     .game_exit{
         width: 50px;
-    }
-    body{
-        font-size: 1em;
     }
     .game_info_text h2,
     .game_info_title h2{
         margin-top: 5px;
         margin-bottom: 5px;
-        text-wrap: wrap;
     }
     .game_info_text p{
         margin-top: 5px;
         margin-bottom: 5px;
-    }
-}
-
-@media screen and (max-width: 450px) { 
-    .game_title {
-        font-size: 2em;
-    }
-    .menu_button {
-        width: 90px;
-        height: 25px;
-        font-size: 0.8em;
-        margin: 5px;
-        outline: #0f253b 1px solid;
-    }
-    .game_exit{
-        width: 50px;
     }
 }
