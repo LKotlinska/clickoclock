@@ -12,27 +12,23 @@ const rules = /*html*/ `
         <div class="game_info_title">
             <div>
                 <button class="menu_button game_exit" onclick="updateContent(mainMenu), flexOn()">
-                   back
+                   <
                 </button>
             </div>
             <div>
                 <h2>
-                How to play Click O'clock
+                How to play
                 </h2>
             </div>
         </div>
         <div class="game_info_text">
             <div>
-                <h2>
-                Game rules
-                </h2>
                 <p>
-                    Click on the circles as they appear on the screen to earn points. Failing to click will result in a point deduction.
-                    The faster you click, the higher your score! Keep playing to improve your reaction time and set a new high score.
+                    Click on the circles as they appear on the screen to earn points.
                 </p>
                  <p>
-                    As you progress, the game becomes more challenging — the more points you earn, the smaller the objects become, 
-                    making it harder to hit them. Stay sharp, click fast, and see how high you can score!
+                    As you progress, the game becomes more challenging — the more points you earn, the smaller the circles become, 
+                    making it harder to hit. Stay sharp, click fast, and see how high you can score!
                 </p>
             </div>
         </div>
@@ -42,20 +38,19 @@ const about = /*html*/ `
     <div class="game_info_title">
         <div>
             <button class="menu_button game_exit" onclick="updateContent(mainMenu), flexOn()">
-            back
+                <
             </button>
         </div>
         <div>
             <h2>
-                Click O'clock-project
+                About the project
             </h2>
         </div>
     </div>
     <div class="game_info_text">
         <div>
-            <h2>About the project</h2>
             <p>
-                Click O’Clock is my first game (but hopefully not my last), and creating it has been an incredibly 
+                Click O’Clock is my first game and creating it has been an incredibly 
                 rewarding experience. There were challenges along the way, but seeing it come together feels like a victory!
             </p>
             <p>
@@ -66,7 +61,9 @@ const about = /*html*/ `
                 I look forward to improving the game based on your feedback!
             </p>
             <p>
-                <a href="#feedback">Here's how you can leave feedback!</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfaVTwwlGhVoPNhu49WWecx4psg8qYZExHAXDHeUwAjcuiaPQ/viewform?usp=header">
+                    You can leave feedback here!
+                </a>
             </p>
         </div>
     </div>
@@ -82,10 +79,10 @@ const gameplay = /*html*/ `
             </button>
         </div>
         <div>
-            <div class="game_lives">
-                <div id="life_1"></div>
-                <div id="life_2"></div>
-                <div id="life_3"></div>
+            <div id="game_lives">
+                <div class="life"></div>
+                <div class="life"></div>
+                <div class="life"></div>
             </div>
         </div>
         <div>
@@ -189,7 +186,7 @@ function resumeGameplay() {
     setNewInterval();
 }
 
-function setNewInterval(){
+function setNewInterval() {
     clearInterval(intervalID);
     intervalID = setInterval(moveObject, 1200)
 }
@@ -197,7 +194,8 @@ function setNewInterval(){
 //Contains the gameplay functionality and mechanics.
 function initiateGameLogic() {
     let life = 3;
-        
+    const lifeElements = document.querySelectorAll("#game_lives .life");
+
     const clickableObject = document.getElementById('clickable_object')
     //Enable grid display for the game HUD.
     gridOn();
@@ -233,20 +231,32 @@ function initiateGameLogic() {
 
     document.getElementById('gameplay_window').addEventListener('mousedown', () => {
         let pressToPlay = document.getElementById('press_to_play');
+
         if (pressToPlay.style.display !== 'none') {
             pressToPlay.style.display = 'none';
+
             clickableObject.style.display = 'block';
+
             setNewInterval();
+
         }
         else {
             life -= 1;
+
+            moveObject();
+
             setNewInterval();
-            document.getElementById('life_3').style.display = 'none';
-            
+
+            if (lifeElements[life]) {
+                lifeElements[life].style.display = "none";
+            }
+
         }
-        if(life === 0){
+        if (life === 0) {
             clearInterval(intervalID);
+
             document.getElementById('game_over').style.display = 'block';
+
             clickableObject.style.display = 'none';
         }
     });
