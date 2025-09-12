@@ -289,3 +289,20 @@ h2,
         height: calc(var(--clickableObject-size) - 10px);
     }
 }
+    @media screen and (max-height: 400px) { 
+    .game_title {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+    .menu_button{
+        width: 170px;
+        height: 45px;
+        font-size: 1.1em;
+        margin: 8px auto;
+    }
+    .game_exit{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+}
